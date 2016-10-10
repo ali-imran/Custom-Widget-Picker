@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">WidgetList</string>
-
+    <string name="widget_dims_format">%1$d \u00d7 %2$d</string>
 
 </resources>

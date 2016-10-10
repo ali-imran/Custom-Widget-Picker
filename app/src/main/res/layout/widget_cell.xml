@@ -23,13 +23,13 @@
         <!-- The name of the widget. -->
         <TextView
             android:id="@+id/widget_name"
-            android:layout_width="match_parent"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:fadingEdge="horizontal"
             android:fontFamily="sans-serif-condensed"
             android:gravity="start"
-            android:paddingLeft="10dp"
+
             android:shadowColor="#B0000000"
             android:shadowRadius="2.0"
             android:singleLine="true"
@@ -38,7 +38,7 @@
 
         <!-- The original dimensions of the widget (can't be the same text as above due to different
              style. -->
-        <!--  <TextView
+        <TextView
               android:id="@+id/widget_dims"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -47,8 +47,9 @@
               android:fontFamily="sans-serif-condensed"
               android:shadowColor="#B0000000"
               android:shadowRadius="2.0"
+              android:text="1 x 1"
               android:textColor="@color/widgets_view_item_text_color"
-              android:textSize="14sp" />-->
+              android:textSize="14sp" />
     </LinearLayout>
 
     <!-- The image of the widget. This view does not support padding. Any placement adjustment

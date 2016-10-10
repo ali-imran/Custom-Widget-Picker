@@ -10,4 +10,11 @@ import android.graphics.drawable.Drawable;
 public class WidgetItem {
     public String lable;
     public  Drawable image;
+    public  int minWidth;
+    public  int minHeigh;
+    public  int minResizeWidth;
+    public  int minResizeHeigh;
+    public  int resizeMode;
+    public int hSpan;
+    public int vSpan;
 }
