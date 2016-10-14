@@ -28,14 +28,16 @@ import static android.media.CamcorderProfile.get;
  * Created by Ali on 10/9/2016.
  */
 
-public class ListAdabper extends BaseAdapter {
+public class ListAdabper extends BaseAdapter implements View.OnClickListener {
 
     Context mContext;
     private ArrayList<WidgetModel> mDataset;
+    private WidgetSelectListner widgetSelectListner;
 
-    public ListAdabper(Context c, ArrayList<WidgetModel> myDataset) {
+    public ListAdabper(Context c, ArrayList<WidgetModel> myDataset, WidgetSelectListner _widgetSelectListner) {
         mDataset = myDataset;
         mContext = c;
+        this.widgetSelectListner = _widgetSelectListner;
 
     }
 
@@ -83,7 +85,8 @@ public class ListAdabper extends BaseAdapter {
         for (int i = 0; i < mDataset.get(position).widgetItems.size(); i++) {
             View childView = LayoutInflater.from(mContext)
                     .inflate(R.layout.widget_cell, holder.scrollLayout, false);
-
+            childView.setTag(position+","+i);
+            childView.setOnClickListener(this);
             ((LinearLayout) holder.scrollLayout.findViewById(R.id.widgets_cell_list)).addView(childView);
         }
 
@@ -110,11 +113,15 @@ public class ListAdabper extends BaseAdapter {
         int vSpan = mDataset.get(position).widgetItems.get(i).vSpan;
 
 
-
-       String dimen="";
+        String dimen = "";
         String mDimensionsFormatString = mContext.getString(R.string.widget_dims_format);
         dimen = String.format(mDimensionsFormatString, hSpan, vSpan);
         return dimen;
+    }
+
+    @Override
+    public void onClick(View view) {
+        widgetSelectListner.onWidgetSelect( Integer.parseInt(view.getTag().toString().split(",")[0]),Integer.parseInt(view.getTag().toString().split(",")[1]));
     }
 
     public static class ViewHolder {

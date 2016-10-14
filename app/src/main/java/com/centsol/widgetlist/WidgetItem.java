@@ -1,5 +1,6 @@
 package com.centsol.widgetlist;
 
+import android.appwidget.AppWidgetProviderInfo;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -17,4 +18,5 @@ public class WidgetItem {
     public  int resizeMode;
     public int hSpan;
     public int vSpan;
+    AppWidgetProviderInfo info;
 }

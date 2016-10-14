@@ -1,5 +1,6 @@
 package com.centsol.widgetlist;
 
+import android.appwidget.AppWidgetProviderInfo;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
 
@@ -14,6 +15,7 @@ public class WidgetModel {
     public String appName;
     public Drawable icon;
     public ArrayList<WidgetItem> widgetItems = new ArrayList<>();
+
 
 
 
