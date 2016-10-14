@@ -132,15 +132,7 @@ public class MainActivity extends AppCompatActivity implements WidgetSelectListn
 
     private void completeAddAppWidget(AppWidgetProviderInfo appWidgetInfo, int appWidgetId) {
 
-        //actually creates the view for the widget
-
-
-        // Bundle extras = data.getExtras();
-
-        // int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-
-
-        //  AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+   
 
 
 
