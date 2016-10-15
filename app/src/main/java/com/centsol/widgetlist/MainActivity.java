@@ -1,5 +1,6 @@
 package com.centsol.widgetlist;
 
+import android.app.Activity;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements WidgetSelectListn
         appWidgetInfo = packageMap.get(pos).widgetItems.get(subIndex).info;
 
         boolean success = mAppWidgetManager.bindAppWidgetIdIfAllowed(
-                appWidgetId, appWidgetInfo.provider);
+                appWidgetId,appWidgetInfo.getProfile(), appWidgetInfo.provider,getDefaultOptionsForWidget(this,appWidgetInfo));
         if (success) {
             configureWidget(appWidgetInfo, appWidgetId, widgetView);
         } else {
@@ -147,7 +148,30 @@ public class MainActivity extends AppCompatActivity implements WidgetSelectListn
         }
     }
 
+    public static Bundle getDefaultOptionsForWidget(Activity launcher, AppWidgetProviderInfo info) {
+        Bundle options = null;
+        Rect rect = new Rect();
+        if (Utilities.ATLEAST_JB_MR1) {
+         //   AppWidgetResizeFrame.getWidgetSizeRanges(launcher, info.spanX, info.spanY, rect);
+            Rect padding = AppWidgetHostView.getDefaultPaddingForWidget(launcher,
+                    info.provider, null);
 
+            float density = launcher.getResources().getDisplayMetrics().density;
+            int xPaddingDips = (int) ((padding.left + padding.right) / density);
+            int yPaddingDips = (int) ((padding.top + padding.bottom) / density);
+
+            options = new Bundle();
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,
+                    rect.left - xPaddingDips);
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,
+                    rect.top - yPaddingDips);
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH,
+                    rect.right - xPaddingDips);
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT,
+                    rect.bottom - yPaddingDips);
+        }
+        return options;
+    }
     @Override
 
     public void onDestroy() {
@@ -228,8 +252,9 @@ public class MainActivity extends AppCompatActivity implements WidgetSelectListn
 
         hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
 
-       // hostView.setAppWidget(appWidgetId, appWidgetInfo);
+        hostView.setAppWidget(appWidgetId, appWidgetInfo);
         hostView.setLayoutParams(new LinearLayout.LayoutParams(widgetView.getWidth(), widgetView.getHeight()));
+
         widgetView = (LinearLayout) layout1;
         widgetView.removeAllViews();
         widgetView.addView(hostView);
