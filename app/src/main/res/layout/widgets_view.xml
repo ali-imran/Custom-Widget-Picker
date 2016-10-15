@@ -11,11 +11,11 @@
     tools:context="com.centsol.widgetlist.MainActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/widget_container"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"></RelativeLayout>
+        android:orientation="vertical"></LinearLayout>
     <!-- DO NOT CHANGE THE ID -->
     <ListView
         android:id="@+id/widgets_list_view"
