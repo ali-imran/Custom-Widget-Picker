@@ -140,12 +140,14 @@ public class MainActivity extends AppCompatActivity implements WidgetSelectListn
             Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_BIND);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, appWidgetInfo.provider);
-         /*   mAppWidgetManager.a(appWidgetInfo.provider)
-                    .addToIntent(intent, AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);*/
+            UserHandleCompat userHandleCompat = UserHandleCompat.myUserHandle();
+
+            userHandleCompat.addToIntent(intent, AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
             // TODO: we need to make sure that this accounts for the options bundle.
             // intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, options);
             startActivityForResult(intent, REQUEST_BIND_APPWIDGET);
         }
+
     }
 
     public static Bundle getDefaultOptionsForWidget(Activity launcher, AppWidgetProviderInfo info) {
